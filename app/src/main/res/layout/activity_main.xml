@@ -8,33 +8,6 @@
     tools:context="com.retrofit_test.ui.MainActivity">
 
     <Button
-        android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="login" />
-
-    <Button
-        android:id="@+id/canTransfer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="canTransfer" />
-
-    <Button
-        android:id="@+id/logOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="logOut" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="******************************" />
-
-    <Button
         android:id="@+id/getException"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,4 +42,24 @@
         android:onClick="click"
         android:text="get_User_List_Null" />
 
+    <Button
+        android:id="@+id/postUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="postUser" />
+
+    <Button
+        android:id="@+id/uploadFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="uploadFile" />
+
+    <Button
+        android:id="@+id/uploadFileWithUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="uploadFileWithUsername" />
 </LinearLayout>

@@ -19,5 +19,5 @@ public class LoggingIntercepror implements Interceptor {
         Logger.i("响应结果:", "code=" + response.code() + " || isSuccessful=" + response.isSuccessful() + " || message=" + response.message());
 //        Logger.i("body="+new String(response.body().bytes()));
         return response;
-    }
-}
+        }
+        }

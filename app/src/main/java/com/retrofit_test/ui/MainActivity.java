@@ -1,6 +1,7 @@
 package com.retrofit_test.ui;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -13,9 +14,12 @@ import com.retrofit_test.bean.User;
 import com.retrofit_test.util.ApiUtils;
 import com.retrofit_test.util.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -33,15 +37,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void click(View v) {
         switch (v.getId()) {
-            case R.id.login:
-                login();
+            case R.id.uploadFileWithUsername:
+                uploadFileWithUsername("huang");
                 break;
-            case R.id.logOut:
-                loginOut();
+            case R.id.uploadFile:
+                uploadFile();
                 break;
-            case R.id.canTransfer:
-                canTransfer();
+            case R.id.postUser:
+                api.postUser("huang2", "hai2").enqueue(new BaseCallback<User>(this) {
+                    @Override
+                    protected void onSuccess(Call<User> call, Response<User> response) throws IOException {
+                        Logger.e(response.body().getUsername() + ";;;;" + response.body().getPassword());
+                    }
+                });
                 break;
+
             case R.id.getException:
                 api.getException().enqueue(new BaseCallback<String>(this) {
                     @Override
@@ -85,6 +95,32 @@ public class MainActivity extends AppCompatActivity {
                 });
                 break;
         }
+    }
+
+    private void uploadFileWithUsername(String str) {
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "out.apatch");
+        if (file.exists())
+            Logger.i("file name=" + file.getName() + ",length=" + file.length());
+        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        api.uploadFileWithUsername(body, str).enqueue(new BaseCallback<User>(this) {
+            @Override
+            protected void onSuccess(Call<User> call, Response<User> response) throws Exception {
+
+            }
+        });
+    }
+
+    private void uploadFile() {
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "out.apatch");
+        if (file.exists())
+            Logger.i("file name=" + file.getName() + ",length=" + file.length());
+        RequestBody body = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+        api.uploadFile(body).enqueue(new BaseCallback<User>(this) {
+            @Override
+            protected void onSuccess(Call<User> call, Response<User> response) throws Exception {
+
+            }
+        });
     }
 
     private void canTransfer() {
