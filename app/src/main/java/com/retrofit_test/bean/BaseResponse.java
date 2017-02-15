@@ -1,35 +1,13 @@
 package com.retrofit_test.bean;
 
 public class BaseResponse<T> {
-
-    private boolean result;
-    private int resultCode;
+    public static final int CODE_SUCCESS = 200;
+    public static final int CODE_FAILED = 500;
     private String msg;
+    private int code;
     private T data;
 
     public BaseResponse() {
-    }
-
-    public BaseResponse(boolean result, int resultCode, String msg) {
-        this.result = result;
-        this.resultCode = resultCode;
-        this.msg = msg;
-    }
-
-    public boolean isResult() {
-        return result;
-    }
-
-    public void setResult(boolean result) {
-        this.result = result;
-    }
-
-    public int getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(int resultCode) {
-        this.resultCode = resultCode;
     }
 
     public String getMsg() {
@@ -38,6 +16,14 @@ public class BaseResponse<T> {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public T getData() {
@@ -51,9 +37,8 @@ public class BaseResponse<T> {
     @Override
     public String toString() {
         return "BaseResponse{" +
-                "result=" + result +
-                ", resultCode=" + resultCode +
-                ", msg='" + msg + '\'' +
+                "msg='" + msg + '\'' +
+                ", code=" + code +
                 ", data=" + data +
                 '}';
     }

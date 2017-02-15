@@ -1,7 +1,6 @@
 package com.retrofit_test.ui;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -14,14 +13,16 @@ import com.retrofit_test.bean.User;
 import com.retrofit_test.util.ApiUtils;
 import com.retrofit_test.util.Logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+<<<<<<< HEAD
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+=======
+>>>>>>> 92d2c1ed2f6a25b92165f92538abc31b1c96f435
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void click(View v) {
         switch (v.getId()) {
+<<<<<<< HEAD
             case R.id.temp:
                 api.getUserList2(Arrays.asList(12, 23, 543)).enqueue(new BaseCallback<List<User>>(this) {
                     @Override
@@ -62,10 +64,12 @@ public class MainActivity extends AppCompatActivity {
                 });
                 break;
 
+=======
+>>>>>>> 92d2c1ed2f6a25b92165f92538abc31b1c96f435
             case R.id.getException:
                 api.getException().enqueue(new BaseCallback<String>(this) {
                     @Override
-                    protected void onSuccess(Call<String> call, Response<String> response) throws Exception {
+                    protected void onSuccess(Call<String> call, Response<String> response) {
 
                     }
                 });
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getUser:
                 api.getUser("huang黄", "hai是对的").enqueue(new BaseCallback<User>(this) {
                     @Override
-                    protected void onSuccess(Call<User> call, Response<User> response) throws IOException {
+                    protected void onSuccess(Call<User> call, Response<User> response){
                         Logger.e(response.body().getUsername() + ";;;;" + response.body().getPassword());
                     }
                 });
@@ -81,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getUserReturnNull:
                 api.getUserReturnNull().enqueue(new BaseCallback<User>(this) {
                     @Override
-                    protected void onSuccess(Call<User> call, Response<User> response) throws IOException {
+                    protected void onSuccess(Call<User> call, Response<User> response){
                         Logger.e(response.body().getUsername() + ";;;;" + response.body().getPassword());
                     }
                 });
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getUserListNull:
                 api.getUserListNull().enqueue(new BaseCallback<List<User>>(this) {
                     @Override
-                    protected void onSuccess(Call<List<User>> call, Response<List<User>> response) throws Exception {
+                    protected void onSuccess(Call<List<User>> call, Response<List<User>> response){
 
                     }
                 });
@@ -97,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getUserList:
                 api.getUserList().enqueue(new BaseCallback<List<User>>(this) {
                     @Override
-                    protected void onSuccess(Call<List<User>> call, Response<List<User>> response) throws IOException {
+                    protected void onSuccess(Call<List<User>> call, Response<List<User>> response) {
                         for (User u : response.body()) {
                             Logger.e(u.getUsername() + ";;;;" + u.getPassword());
                         }
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     private void uploadFileWithUsername(String str) {
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "out.apatch");
         if (file.exists())
@@ -137,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void canTransfer() {//测试350M文件可以上传
+=======
+    private void canTransfer() {
+>>>>>>> 92d2c1ed2f6a25b92165f92538abc31b1c96f435
         api.canTransfer().enqueue(new BaseCallback<BaseResponse<List<ClaimsRecordKzr>>>(this) {
             @Override
             protected void onSuccess(Call<BaseResponse<List<ClaimsRecordKzr>>> call, Response<BaseResponse<List<ClaimsRecordKzr>>> response) {
@@ -149,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     void login() {
         api.login("13265468238", "123456").enqueue(new BaseCallback<BaseResponse<Integer>>(this) {
             @Override
-            protected void onSuccess(Call<BaseResponse<Integer>> call, Response<BaseResponse<Integer>> response) throws IOException {
+            protected void onSuccess(Call<BaseResponse<Integer>> call, Response<BaseResponse<Integer>> response) {
                 Logger.e(response.body().toString());
             }
         });

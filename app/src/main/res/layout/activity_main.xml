@@ -42,6 +42,14 @@
         android:onClick="click"
         android:text="get_User_List_Null" />
 
+=======
+        android:text="getUser" />
+    <Button
+        android:id="@+id/getUserNull"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="getUser_Null" />
     <Button
         android:id="@+id/postUser"
         android:layout_width="match_parent"

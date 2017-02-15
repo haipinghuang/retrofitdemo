@@ -17,7 +17,7 @@ public class LoggingIntercepror implements Interceptor {
         Logger.i(String.format(request.method() + ",发送请求:%s on %s %s", request.url(), request.headers(), chain.connection()));
         Response response = chain.proceed(request);
         Logger.i("响应结果:", "code=" + response.code() + " || isSuccessful=" + response.isSuccessful() + " || message=" + response.message());
-//        Logger.i("body="+new String(response.body().bytes()));
+//        Logger.i("body="+response.body().string());
         return response;
     }
 }

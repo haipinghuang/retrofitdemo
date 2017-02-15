@@ -37,6 +37,8 @@ public interface Api {
     @GET("getUserReturnNull")
     Call<User> getUserReturnNull();
 
+    @GET("getUserNull")
+    Call<User> getUserNull();
 
     @GET("getUserList")
     Call<List<User>> getUserList();

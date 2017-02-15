@@ -21,7 +21,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class ApiUtils {
     private static final int CONNECTION_TIMEOUT = 5;
     private static final int READ_TIMEOUT = 5;
-        private static String BASE_URL = "http://192.168.1.162:8080/webtest/";
+        private static String BASE_URL = "http://192.168.1.104:8080/webtest/";
 //    private static String BASE_URL = "https://mportal.tianjihuifu.com/";
     private static Retrofit retrofit;
 
