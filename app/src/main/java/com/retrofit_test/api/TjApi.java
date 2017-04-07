@@ -1,12 +1,11 @@
 package com.retrofit_test.api;
 
 import com.retrofit_test.bean.BaseResponse;
-import com.retrofit_test.bean.Mixed;
 import com.retrofit_test.bean.User;
+import com.retrofit_test.http.Hcall;
 
 import java.util.List;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -16,18 +15,20 @@ import retrofit2.http.Query;
  */
 
 public interface TjApi {
-    @GET("tj/getMixedNull")
-    Call<BaseResponse<Mixed>> getMixedNull(@Query("p") String p);
+    String baseUrl = "http://127.0.0.109:8080/";
+
+    @GET("getNullUrl")
+    Hcall<String> getNullUrl();//请求无效网址
 
     @GET("tj/getString")
-    Call<BaseResponse<String>> getString(@Query("p") String p);
+    Hcall<BaseResponse<String>> getString(@Query("p") String p);
 
     @GET("tj/getUser")
-    Call<BaseResponse<User>> getUser(@Query("p") String p);
+    Hcall<BaseResponse<User>> getUser(@Query("p") String p);
 
     @GET("tj/getUserList")
-    Call<BaseResponse<List<User>>> getUserList(@Query("p") String p);
+    Hcall<BaseResponse<List<User>>> getUserList(@Query("p") String p);
 
     @POST(value = "uploadFile2.do")
-    Call<String> uploadFile();
+    Hcall<String> uploadFile();
 }

@@ -1,7 +1,5 @@
 package com.retrofit_test.api;
 
-import com.retrofit_test.bean.BaseResponse;
-import com.retrofit_test.bean.ClaimsRecordKzr;
 import com.retrofit_test.bean.User;
 
 import java.util.List;
@@ -18,6 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -33,7 +32,6 @@ public interface Api {
     @GET("getCommonText")
     Call<String> getCommonText();
 
-
     @GET("getUserReturnNull")
     Call<User> getUserReturnNull();
 
@@ -47,11 +45,6 @@ public interface Api {
     @GET("getUserList2")
     Call<List<User>> getUserList2(@Query("id") List<Integer> ids);
 
-    //适用于参数较多的情况
-    @POST("getUserList3")
-    @FormUrlEncoded
-    Call<List<User>> getUserList2(@FieldMap Map<String, String> map);
-
     @GET("getUserListNull")
     Call<List<User>> getUserListNull();
 
@@ -61,6 +54,11 @@ public interface Api {
     @POST("postUser")
     @FormUrlEncoded
     Call<User> postUser(@Field("username") String uname, @Field("password") String pwd);
+
+    //适用于参数较多的情况
+    @POST("getUserList3")
+    @FormUrlEncoded
+    Call<List<User>> getUserList3(@FieldMap Map<String, String> map);
 
     @POST("postUser2")
     @FormUrlEncoded
@@ -84,13 +82,14 @@ public interface Api {
     @POST("file/uploadFileWithUsername.do")
     Call<User> uploadFileWithUsername(@Part MultipartBody.Part file, @Part("userName") String uname);//已ok
 
-    //*****************************************
-    @GET("tjhf/loginRegist/login")
-    Call<BaseResponse<Integer>> login(@Query("uname") String name, @Query("pwd") String password);
+    //多文件上传
+    @Multipart
+    @POST("file/uploadFiles.do")
+    Call<String> uploadFiles(@Part("userName") String uname, @PartMap Map<String, RequestBody> maps);
 
-    @GET("tjhf/loginRegist/logout")
-    Call<BaseResponse<Object>> loginOut();
+    //-----------------------
+    @GET("sddd/.sdf`~sd/*_!@#@$#@%$#%$^%$^&%$&&&^(*)")
+    Call<String> getWrongUrl();//不会报url错误
 
-    @GET("tjhf/claims/canTransfer/1/10")
-    Call<BaseResponse<List<ClaimsRecordKzr>>> canTransfer();
+
 }

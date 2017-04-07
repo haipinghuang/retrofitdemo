@@ -1,8 +1,12 @@
 package com.retrofit_test.util;
 
+import android.content.res.TypedArray;
 import android.util.Log;
+import android.util.TypedValue;
 
 import com.retrofit_test.BuildConfig;
+
+import java.lang.reflect.Array;
 
 /**
  * Created by 黄海 on 12/25/2016.

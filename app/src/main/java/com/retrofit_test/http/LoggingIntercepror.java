@@ -1,4 +1,6 @@
-package com.retrofit_test.util;
+package com.retrofit_test.http;
+
+import com.retrofit_test.util.Logger;
 
 import java.io.IOException;
 
@@ -19,5 +21,5 @@ public class LoggingIntercepror implements Interceptor {
         Logger.i("响应结果:", "code=" + response.code() + " || isSuccessful=" + response.isSuccessful() + " || message=" + response.message());
 //        Logger.i("body="+response.body().string());
         return response;
-    }
-}
+        }
+        }
