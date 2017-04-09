@@ -9,10 +9,9 @@ import android.content.Context;
 
 public abstract class DialogCallback<T> extends BaseCallBack<T> {
     private ProgressDialog progressDialog;
-    private Context context;
 
     public DialogCallback(Context context) {
-        this.context = context;
+        super(context);
     }
 
     @Override

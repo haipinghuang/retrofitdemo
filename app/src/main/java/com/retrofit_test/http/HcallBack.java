@@ -1,5 +1,7 @@
 package com.retrofit_test.http;
 
+import android.content.Context;
+
 import retrofit2.Callback;
 
 /**
