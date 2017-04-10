@@ -1,72 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.retrofit_test.ui.MainActivity">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/getNullUrl"
+    <TextView
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getNullUrl" />
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="19sp" />
 
-    <Button
-        android:id="@+id/getUser"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getUser" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/getValidatedUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getValidatedUser" />
+        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/activity_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context="com.retrofit_test.ui.MainActivity">
 
-    <Button
-        android:id="@+id/postUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="postUser" />
 
-    <Button
-        android:id="@+id/postUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="postUserName" />
+            <Button
+                android:id="@+id/getNullUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="getNullUrl" />
 
-    <Button
-        android:id="@+id/postUsers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="postUsers" />
+            <Button
+                android:id="@+id/getUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="getUser" />
 
-    <Button
-        android:id="@+id/uploadFile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="uploadFile" />
+            <Button
+                android:id="@+id/getValidatedUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="getValidatedUser" />
 
-    <Button
-        android:id="@+id/uploadFileWithUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="uploadFileWithUsername" />
+            <Button
+                android:id="@+id/getValidatedUsers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="getValidatedUsers" />
 
-    <Button
-        android:id="@+id/downloadFile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="downloadFile" />
+            <Button
+                android:id="@+id/postUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="postUser" />
+
+            <Button
+                android:id="@+id/postUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="postUserName" />
+
+            <Button
+                android:id="@+id/postUsers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="postUsers" />
+
+            <Button
+                android:id="@+id/uploadFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="uploadFile" />
+
+            <Button
+                android:id="@+id/uploadFileWithUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="uploadFileWithUsername" />
+
+            <Button
+                android:id="@+id/downloadFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="downloadFile" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

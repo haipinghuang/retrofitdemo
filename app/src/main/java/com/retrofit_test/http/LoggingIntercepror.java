@@ -23,7 +23,10 @@ public class LoggingIntercepror implements Interceptor {
 
         MediaType contentType = response.body().contentType();
         String responseBody = response.body().string();
-        Logger.i("响应结果:", "code=" + response.code() + " || isSuccessful=" + response.isSuccessful() + " || message=" + response.message() + "\n|| responseBody=" + responseBody);
+        StringBuilder stringBuilder = new StringBuilder("code=" + response.code() + " || isSuccessful=" + response.isSuccessful() + " || message=" + response.message() + " || contentType=" + contentType);
+        if (!contentType.toString().contains("octet-stream"))//such as contentType=application/octet-stream
+            stringBuilder.append(" ||\nresponseBody=" + responseBody);
+        Logger.i("响应结果:", stringBuilder.toString());
         ResponseBody body = ResponseBody.create(contentType, responseBody);
         return response.newBuilder().body(body).build();
     }

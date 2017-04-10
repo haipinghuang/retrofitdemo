@@ -8,7 +8,7 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.retrofit_test.api.TjApi;
+import com.retrofit_test.api.RetrofitApi;
 import com.retrofit_test.http.HaiCallAdapterFactory;
 import com.retrofit_test.http.LoggingIntercepror;
 
@@ -42,7 +42,7 @@ public class ApiUtils {
                 .addCallAdapterFactory(new HaiCallAdapterFactory(new Handler(Looper.getMainLooper())))
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create()).client(builder.build())
-                .baseUrl(TjApi.baseUrl)
+                .baseUrl(RetrofitApi.baseUrl)
                 .build();
     }
 

@@ -55,7 +55,7 @@ public class HaiCallAdapterFactory extends CallAdapter.Factory {
         public void enqueue(Callback<T> callback) {
             if (callback == null) throw new NullPointerException("callback == null");
             if (!(callback instanceof HcallBack))
-                throw new NullPointerException("callback.getClass()!=HcallBack.class");
+                throw new IllegalArgumentException("callback.getClass()!=HcallBack.class");
             final HcallBack hcallBack = (HcallBack) callback;
             onStart(hcallBack);
             delegate.enqueue(new Callback<T>() {

@@ -29,12 +29,6 @@ public class TjActivity extends AppCompatActivity {
     public void click(View v) {
         switch (v.getId()) {
             case R.id.getString:
-                api.getNullUrl().enqueue(new DialogCallback<String>(this) {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-
-                    }
-                });
                 break;
             case R.id.getMixedNull:
 

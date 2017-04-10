@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -24,6 +25,8 @@ import retrofit2.http.Streaming;
  */
 
 public interface RetrofitApi {
+    String baseUrl = "http://192.168.1.109:8080/retrofitweb/";
+
     @GET("getNullUrl")
     Hcall<String> getNullUrl();//请求无效网址
 
@@ -36,6 +39,7 @@ public interface RetrofitApi {
     @GET("getValidatedUsers")
     Hcall<BaseResponse<List<User>>> getValidatedUsers(@Query("userName") String... names);
 
+    @FormUrlEncoded
     @POST("postUser")
     Hcall<User> postUser(@Field("name") String name);
 
@@ -46,11 +50,17 @@ public interface RetrofitApi {
     @POST("postUsers")
     Hcall<BaseResponse<List<User>>> postUsers(@FieldMap Map<String, String> fields);
 
-    @POST("uploadFile")
     @Multipart
-    Hcall<BaseResponse<String>> uploadFile(@Part MultipartBody.Part part, @Part("name") String name);
+    @POST("file/uploadFile")
+    Hcall<String> uploadFile(@Part MultipartBody.Part file);//已ok
+
+    //uploadFileWithUsername(@RequestParam("file") CommonsMultipartFile file,@RequestParam("name") String name)
+    @POST("uploadFileWithName")
+    @Multipart
+    Hcall<String> uploadFileWithName(@Part MultipartBody.Part part, @Part("name") String name);//已ok
+
 
     @GET("downloadFile")
     @Streaming
-    Hcall<String> downloadFile();
+    Hcall<ResponseBody> downloadFile(@Query("fileName") String filename);
 }

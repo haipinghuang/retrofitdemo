@@ -11,6 +11,7 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * Created by 黄海 on 2017/4/7.
@@ -30,8 +31,17 @@ public abstract class BaseCallBack<T> implements HcallBack<T> {
     }
 
     @Override
+    public void onResponse(Call<T> call, Response<T> response) {
+        if (response.isSuccessful() && response.code() == 200) {
+            onSuccess(call, response);
+        } else {
+            Toast.makeText(context, "服务器内部错误，请稍候重试", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public void onFailure(Call call, Throwable t) {
-        Logger.e(TAG, "onFailure() called with: call = [" + call + "], t = [" + t + "]");
+        Logger.e(TAG, "onFailure() called with: call = [" + call + "],\n t = [" + t + "]");
         if (t instanceof UnknownHostException || t instanceof SocketTimeoutException || t instanceof ConnectException) {
             Toast.makeText(context, "网络错误，请稍候重试", Toast.LENGTH_SHORT).show();
         } else {

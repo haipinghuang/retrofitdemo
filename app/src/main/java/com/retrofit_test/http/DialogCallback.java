@@ -23,6 +23,7 @@ public abstract class DialogCallback<T> extends BaseCallBack<T> {
     private void initProgressDialog(Context context) {
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
+        progressDialog.setMessage("请求中...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
     }
