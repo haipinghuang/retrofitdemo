@@ -92,6 +92,12 @@
                 android:layout_height="wrap_content"
                 android:onClick="click"
                 android:text="downloadFile" />
+            <Button
+                android:id="@+id/download"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="download" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

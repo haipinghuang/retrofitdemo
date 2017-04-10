@@ -19,6 +19,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 /**
  * Created by 黄海 on 4/8/2017.
@@ -63,4 +64,8 @@ public interface RetrofitApi {
     @GET("downloadFile")
     @Streaming
     Hcall<ResponseBody> downloadFile(@Query("fileName") String filename);
+
+    @GET
+    @Streaming
+    Hcall<ResponseBody> download(@Url String url);
 }

@@ -3,7 +3,6 @@ package com.retrofit_test.ui;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,14 +13,10 @@ import com.retrofit_test.bean.User;
 import com.retrofit_test.http.BaseCallBack;
 import com.retrofit_test.http.DialogCallback;
 import com.retrofit_test.util.ApiUtils;
+import com.retrofit_test.util.FileUtils;
 import com.retrofit_test.util.Logger;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -122,6 +117,20 @@ public class RetrofitActivity extends AppCompatActivity {
                     }
                 });
                 break;
+            case R.id.download:
+                api.download("http://192.168.1.109:8080/app-debug.apk").enqueue(new DialogCallback<ResponseBody>(this) {
+                    @Override
+                    public void onSuccess(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    }
+
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.code() == 200 || response.code() == 201) {
+                            FileUtils.response2File(response);
+                        }
+                    }
+                });
+                break;
             case R.id.downloadFile:
                 api.downloadFile("app-debug.apk").enqueue(new DialogCallback<ResponseBody>(this) {
                     @Override
@@ -131,35 +140,12 @@ public class RetrofitActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
                         if (response.code() == 200 || response.code() == 201) {
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    InputStream inputStream = response.body().byteStream();
-                                    File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), new Date().getTime() + ".apk");
-                                    byte[] buffer = new byte[2048];
-                                    FileOutputStream fos = null;
-                                    try {
-                                        fos = new FileOutputStream(file);
-                                        while ((inputStream.read(buffer)) != -1) {
-                                            fos.write(buffer);
-                                        }
-                                        fos.flush();
-                                        Log.e("hhp", file.getName() + "下载成功=" + file.length());
-
-                                    } catch (FileNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    } finally {
-                                        try {
-                                            inputStream.close();
-                                            fos.close();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }
-                            }).start();
+                           new Thread(new Runnable() {
+                               @Override
+                               public void run() {
+                                   FileUtils.response2File(response);
+                               }
+                           }).start();
                         }
                     }
                 });
@@ -168,4 +154,6 @@ public class RetrofitActivity extends AppCompatActivity {
         }
 
     }
+
+
 }
