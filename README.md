@@ -29,7 +29,7 @@ api.postUser("hai").enqueue(new BaseCallBack<User>(this) {
                     }
                 });
 ```
-HcallBack定义如下：
+### HcallBack定义如下：
 ```sh
 public interface HcallBack<T> extends Callback<T> {
     void onStart();
@@ -44,8 +44,8 @@ public interface HcallBack<T> extends Callback<T> {
     void onCompleted();
 }
 ```
-HcallBack的子类有
+### HcallBack的子类有
   - BaseCallBack
   - DialogCallback
   
-如果你的网络请求使用到网络请求等待对话框，一般使用DialogCallback就够了，ok，就这么简单
+## 如果你的网络请求使用到网络请求等待对话框，一般使用DialogCallback就够了，ok，就这么简单
