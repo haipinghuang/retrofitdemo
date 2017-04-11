@@ -1,7 +1,6 @@
 package com.retrofit_test.http;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.retrofit_test.util.Logger;
@@ -33,7 +32,12 @@ public abstract class BaseCallBack<T> implements HcallBack<T> {
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
         if (response.isSuccessful() && response.code() == 200) {
-            onSuccess(call, response);
+            try {
+                onSuccess(call, response);
+            } catch (Exception e) {
+                Toast.makeText(context, "onSuccess方法出错，请检查", Toast.LENGTH_SHORT).show();
+                Logger.e(null, "方法onSuccess抛出异常", e);
+            }
         } else {
             Toast.makeText(context, "服务器内部错误，请稍候重试", Toast.LENGTH_SHORT).show();
         }
@@ -51,6 +55,6 @@ public abstract class BaseCallBack<T> implements HcallBack<T> {
 
     @Override
     public void onCompleted() {
-        Log.i(TAG, "onCompleted() called");
+        Logger.i(TAG, "onCompleted() called");
     }
 }

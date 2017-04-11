@@ -22,9 +22,9 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
+ * 此中的接口都已测试 通过
  * Created by 黄海 on 4/8/2017.
  */
-
 public interface RetrofitApi {
     String baseUrl = "http://192.168.1.109:8080/retrofitweb/";
 
@@ -58,7 +58,7 @@ public interface RetrofitApi {
     //uploadFileWithUsername(@RequestParam("file") CommonsMultipartFile file,@RequestParam("name") String name)
     @POST("uploadFileWithName")
     @Multipart
-    Hcall<String> uploadFileWithName(@Part MultipartBody.Part part, @Part("name") String name);//已ok
+    Hcall<BaseResponse<String>> uploadFileWithName(@Part MultipartBody.Part part, @Part("name") String name);//已ok
 
 
     @GET("downloadFile")

@@ -10,7 +10,7 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.retrofit_test.api.RetrofitApi;
 import com.retrofit_test.http.HaiCallAdapterFactory;
-import com.retrofit_test.http.LoggingIntercepror;
+import com.retrofit_test.http.LoggingInterceptor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +35,9 @@ public class ApiUtils {
 
     public static void init(Context context) {
         ClearableCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
-        OkHttpClient.Builder builder = new OkHttpClient.Builder().addInterceptor(new LoggingIntercepror()).cookieJar(cookieJar)
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .addInterceptor(new LoggingInterceptor())
+                .cookieJar(cookieJar)
                 .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS);
         retrofit = new Retrofit.Builder()

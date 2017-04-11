@@ -11,16 +11,14 @@ import java.io.InputStream;
 import java.util.Date;
 
 import okhttp3.ResponseBody;
-import retrofit2.Response;
 
 /**
  * Created by 黄海 on 2017/4/10.
  */
 
 public class FileUtils {
-    public static void response2File(final Response<ResponseBody> response) {
-
-        InputStream inputStream = response.body().byteStream();
+    public static void response2File(final ResponseBody responseBody) {
+        InputStream inputStream = responseBody.byteStream();
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), new Date().getTime() + ".apk");
         byte[] buffer = new byte[2048];
         FileOutputStream fos = null;

@@ -2,6 +2,8 @@ package com.retrofit_test.http;
 
 import android.os.Handler;
 
+import com.retrofit_test.util.Logger;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -66,12 +68,19 @@ public class HaiCallAdapterFactory extends CallAdapter.Factory {
                         public void run() {
                             if (delegate.isCanceled()) {
                                 // Emulate OkHttp's behavior of throwing/delivering an IOException on cancellation.
-                                hcallBack.onFailure(HaiCallbackCall.this, new IOException("Canceled"));
-                                onCompleted(hcallBack);
+                                try {
+                                    hcallBack.onFailure(HaiCallbackCall.this, new IOException("Canceled"));
+                                } catch (Exception e) {
+                                    Logger.e(null, "方法onFailure抛出异常",e);
+                                }
                             } else {
-                                hcallBack.onResponse(HaiCallbackCall.this, response);
-                                onCompleted(hcallBack);
+                                try {
+                                    hcallBack.onResponse(HaiCallbackCall.this, response);
+                                } catch (Exception e) {
+                                    Logger.e(null, "方法onResponse抛出异常",e);
+                                }
                             }
+                            onCompleted(hcallBack);
                         }
                     });
                 }
@@ -81,7 +90,11 @@ public class HaiCallAdapterFactory extends CallAdapter.Factory {
                     callbackExecutor.post(new Runnable() {
                         @Override
                         public void run() {
-                            hcallBack.onFailure(HaiCallbackCall.this, t);
+                            try {
+                                hcallBack.onFailure(HaiCallbackCall.this, t);
+                            } catch (Exception e) {
+                                Logger.e(null, "方法onFailure抛出异常",e);
+                            }
                             onCompleted(hcallBack);
                         }
                     });

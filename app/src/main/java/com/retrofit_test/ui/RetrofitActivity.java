@@ -57,6 +57,7 @@ public class RetrofitActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Call<User> call, Response<User> response) {
                         tv_content.setText(response.body().toString());
+//                        response.raw().close();// Cannot read raw response body of a converted body.
                     }
                 });
                 break;
@@ -110,27 +111,16 @@ public class RetrofitActivity extends AppCompatActivity {
                 if (file.exists())
                     Logger.i("file name=" + file.getName() + ",length=" + file.length());
                 MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MultipartBody.FORM, file));
-                api.uploadFileWithName(filePart, "huang").enqueue(new DialogCallback<String>(this) {
+                api.uploadFileWithName(filePart, "huang").enqueue(new DialogCallback<BaseResponse<String>>(this) {
                     @Override
-                    public void onSuccess(Call<String> call, Response<String> response) {
-                        tv_content.setText("上传成功");
+                    public void onSuccess(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
+                        if (response.body().getCode() == BaseResponse.CODE_FAILED) {
+                            tv_content.setText(response.body().getMsg());
+                        } else tv_content.setText(response.body().getData());
                     }
                 });
                 break;
-            case R.id.download:
-                api.download("http://192.168.1.109:8080/app-debug.apk").enqueue(new DialogCallback<ResponseBody>(this) {
-                    @Override
-                    public void onSuccess(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    }
 
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.code() == 200 || response.code() == 201) {
-                            FileUtils.response2File(response);
-                        }
-                    }
-                });
-                break;
             case R.id.downloadFile:
                 api.downloadFile("app-debug.apk").enqueue(new DialogCallback<ResponseBody>(this) {
                     @Override
@@ -140,17 +130,29 @@ public class RetrofitActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
                         if (response.code() == 200 || response.code() == 201) {
-                           new Thread(new Runnable() {
-                               @Override
-                               public void run() {
-                                   FileUtils.response2File(response);
-                               }
-                           }).start();
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    FileUtils.response2File(response.body());
+                                }
+                            }).start();
                         }
                     }
                 });
                 break;
-
+            case R.id.download:
+                api.download("http://192.168.1.109:8080/rongzhi.apk").enqueue(new DialogCallback<ResponseBody>(this) {
+                    @Override
+                    public void onSuccess(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                FileUtils.response2File(response.body());
+                            }
+                        }).start();
+                    }
+                });
+                break;
         }
 
     }
