@@ -12,6 +12,11 @@
     @POST("postUserName/{name}")
     Hcall<User> postUserName(@Path("name") String name);
 ```
+### 添加自定义CallAdapter
+```sh
+retrofit = new Retrofit.Builder()
+                .addCallAdapterFactory(new HaiCallAdapterFactory(new Handler(Looper.getMainLooper())))
+``` 
 ### 请求网络，回调务必使用HcallBack的子类
 ```sh
 api = ApiUtils.getRetrofit().create(RetrofitApi.class);
@@ -22,9 +27,9 @@ api.getValidatedUsers(new String[]{"hai", "huang", "li", "chen"}).enqueue(new Ba
                     }
 
                 });
-api.postUser("hai").enqueue(new BaseCallBack<User>(this) {
+api.getValidatedUser("li", "sihhh").enqueue(new DialogCallback<BaseResponse<User>>(this) {
                     @Override
-                    public void onSuccess(Call<User> call, Response<User> response) {
+                    public void onSuccess(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                         tv_content.setText(response.body().toString());
                     }
                 });
@@ -49,3 +54,4 @@ public interface HcallBack<T> extends Callback<T> {
   - DialogCallback
   
 ## 如果你的网络请求使用到网络请求等待对话框，一般使用DialogCallback就够了，ok，就这么简单
+ps：web文件夹是idea工具开发的基于springMvc、maven开发的测试接口服务器代码
