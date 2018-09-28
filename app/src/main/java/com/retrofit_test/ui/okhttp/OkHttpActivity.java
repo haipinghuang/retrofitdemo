@@ -7,7 +7,10 @@ import android.view.View;
 
 import com.retrofit_test.R;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 /**
  * 直接测试okHttp
@@ -15,6 +18,7 @@ import okhttp3.OkHttpClient;
  * Email h1132760021@sina.com
  */
 public class OkHttpActivity extends AppCompatActivity {
+    String baseUrl = "http://10.200.6.38:8080/retrofitweb/";
     OkHttpClient okHttpClient;
 
     @Override
@@ -25,5 +29,22 @@ public class OkHttpActivity extends AppCompatActivity {
     }
 
     public void click(View view) {
+        switch (view.getId()) {
+            case R.id.get:
+                break;
+            case R.id.post:
+                post();
+                break;
+            case R.id.json:
+                break;
+        }
+    }
+
+    private void post() {
+        RequestBody formBody = new FormBody.Builder().add("username", "huanghai").build();
+        Request request = new Request.Builder().addHeader("key-header", "value-header")
+                .url(baseUrl)
+                .post(formBody)
+                .build();
     }
 }
