@@ -7,7 +7,7 @@ import android.content.Context;
  * Created by 黄海 on 2017/4/7.
  */
 
-public abstract class DialogCallback<T> extends BaseCallBack<T> {
+public abstract class DialogCallback<T> extends BaseCallback<T> {
     private ProgressDialog progressDialog;
 
     public DialogCallback(Context context) {

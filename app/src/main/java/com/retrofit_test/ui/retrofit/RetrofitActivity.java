@@ -1,4 +1,4 @@
-package com.retrofit_test.ui;
+package com.retrofit_test.ui.retrofit;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -10,7 +10,7 @@ import com.retrofit_test.R;
 import com.retrofit_test.api.RetrofitApi;
 import com.retrofit_test.bean.BaseResponse;
 import com.retrofit_test.bean.User;
-import com.retrofit_test.http.BaseCallBack;
+import com.retrofit_test.http.BaseCallback;
 import com.retrofit_test.http.DialogCallback;
 import com.retrofit_test.util.ApiUtils;
 import com.retrofit_test.util.FileUtils;
@@ -45,7 +45,7 @@ public class RetrofitActivity extends AppCompatActivity {
     public void click(View v) {
         switch (v.getId()) {
             case R.id.getNullUrl:
-                api.getNullUrl().enqueue(new BaseCallBack<String>(this) {
+                api.getNullUrl().enqueue(new DialogCallback<String>(this) {
                     @Override
                     public void onSuccess(Call<String> call, Response<String> response) {
 
@@ -61,6 +61,12 @@ public class RetrofitActivity extends AppCompatActivity {
                     }
                 });
                 break;
+            case R.id.getDelay3s:
+                getDelay(3);
+                break;
+            case R.id.getDelay30s:
+                getDelay(30);
+                break;
             case R.id.getValidatedUser:
                 api.getValidatedUser("li", "sihhh").enqueue(new DialogCallback<BaseResponse<User>>(this) {
                     @Override
@@ -70,7 +76,7 @@ public class RetrofitActivity extends AppCompatActivity {
                 });
                 break;
             case R.id.getValidatedUsers:
-                api.getValidatedUsers(new String[]{"hai", "huang", "li", "chen"}).enqueue(new BaseCallBack<BaseResponse<List<User>>>(this) {
+                api.getValidatedUsers(new String[]{"hai", "huang", "li", "chen"}).enqueue(new BaseCallback<BaseResponse<List<User>>>(this) {
                     @Override
                     public void onSuccess(Call<BaseResponse<List<User>>> call, Response<BaseResponse<List<User>>> response) {
                         tv_content.setText(response.body().toString());
@@ -79,7 +85,7 @@ public class RetrofitActivity extends AppCompatActivity {
                 });
                 break;
             case R.id.postUser:
-                api.postUser("hai").enqueue(new BaseCallBack<User>(this) {
+                api.postUser("hai").enqueue(new BaseCallback<User>(this) {
                     @Override
                     public void onSuccess(Call<User> call, Response<User> response) {
                         tv_content.setText(response.body().toString());
@@ -99,7 +105,7 @@ public class RetrofitActivity extends AppCompatActivity {
                 map.put("haung", "hai");
                 map.put("li", "si");
                 map.put("zhang", "san");
-                api.postUsers(map).enqueue(new BaseCallBack<BaseResponse<List<User>>>(this) {
+                api.postUsers(map).enqueue(new BaseCallback<BaseResponse<List<User>>>(this) {
                     @Override
                     public void onSuccess(Call<BaseResponse<List<User>>> call, Response<BaseResponse<List<User>>> response) {
                         tv_content.setText(response.body().toString());
@@ -155,6 +161,16 @@ public class RetrofitActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+
+
+    private void getDelay(int delaySec) {
+        api.getDelay(delaySec).enqueue(new DialogCallback<String>(this) {
+            @Override
+            public void onSuccess(Call<String> call, Response<String> response) {
+                tv_content.setText(response.body().toString());
+            }
+        });
     }
 
 

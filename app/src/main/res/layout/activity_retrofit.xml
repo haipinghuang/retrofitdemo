@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context="com.retrofit_test.ui.MainActivity">
+            tools:context="com.retrofit_test.ui.retrofit.MainActivity">
 
 
             <Button
@@ -28,76 +28,102 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="getNullUrl" />
+                android:text="getNullUrl"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/getUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="getUser" />
+                android:text="getUser"
+                android:textAllCaps="false" />
 
+            <Button
+                android:id="@+id/getDelay3s"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="getDelay3s"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/getDelay30s"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="getDelay30s"
+                android:textAllCaps="false" />
             <Button
                 android:id="@+id/getValidatedUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="getValidatedUser" />
+                android:text="getValidatedUser"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/getValidatedUsers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="getValidatedUsers" />
+                android:text="getValidatedUsers"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/postUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="postUser" />
+                android:text="postUser"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/postUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="postUserName" />
+                android:text="postUserName"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/postUsers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="postUsers" />
+                android:text="postUsers"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/uploadFile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="uploadFile" />
+                android:text="uploadFile"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/uploadFileWithUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="uploadFileWithUsername" />
+                android:text="uploadFileWithUsername"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/downloadFile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="downloadFile" />
+                android:text="downloadFile"
+                android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/download"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
-                android:text="download" />
+                android:text="download"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -18,7 +18,8 @@ public class LoggingInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        Logger.i(String.format(request.method() + ",发送请求:%s on %s %s", request.url(), request.headers(), chain.connection()));
+        String requsetBody = request.body().toString();
+        Logger.i(String.format(request.method() + ",发送请求:%s requestBody= %s", request.url(), requsetBody));
         Response response = chain.proceed(request);
 
         ResponseBody body;
@@ -30,7 +31,7 @@ public class LoggingInterceptor implements Interceptor {
             body = ResponseBody.create(contentType, responseBody);
         } else
             body = response.body();
-        Logger.i("响应结果:", stringBuilder.toString());
+        Logger.i("响应结果:" + stringBuilder.toString());
         return response.newBuilder().body(body).build();
     }
 }

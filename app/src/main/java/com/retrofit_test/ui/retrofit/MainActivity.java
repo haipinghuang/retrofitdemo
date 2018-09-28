@@ -1,4 +1,4 @@
-package com.retrofit_test.ui;
+package com.retrofit_test.ui.retrofit;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -7,8 +7,8 @@ import android.view.View;
 
 import com.retrofit_test.R;
 import com.retrofit_test.api.Api;
-import com.retrofit_test.bean.BaseCallback;
 import com.retrofit_test.bean.User;
+import com.retrofit_test.http.BaseCallback;
 import com.retrofit_test.util.ApiUtils;
 import com.retrofit_test.util.Logger;
 
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void click(View v) {
         switch (v.getId()) {
             case R.id.temp:
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.postUser:
                 api.postUser("huang2", "hai2").enqueue(new BaseCallback<User>(this) {
                     @Override
-                    protected void onSuccess(Call<User> call, Response<User> response) {
+                    public void onSuccess(Call<User> call, Response<User> response) {
                         Logger.e(response.body().getUsername() + ";;;;" + response.body().getPassword());
                     }
                 });
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getException:
                 api.getException().enqueue(new BaseCallback<String>(this) {
                     @Override
-                    protected void onSuccess(Call<String> call, Response<String> response) {
+                    public void onSuccess(Call<String> call, Response<String> response) {
 
                     }
                 });
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getUser:
                 api.getUser("huang黄", "hai是对的").enqueue(new BaseCallback<User>(this) {
                     @Override
-                    protected void onSuccess(Call<User> call, Response<User> response) {
+                    public void onSuccess(Call<User> call, Response<User> response) {
                         Logger.e(response.body().getUsername() + ";;;;" + response.body().getPassword());
                     }
                 });
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getUserReturnNull:
                 api.getUserReturnNull().enqueue(new BaseCallback<User>(this) {
                     @Override
-                    protected void onSuccess(Call<User> call, Response<User> response) {
+                    public void onSuccess(Call<User> call, Response<User> response) {
                         Logger.e(response.body().getUsername() + ";;;;" + response.body().getPassword());
                     }
                 });
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getUserListNull:
                 api.getUserListNull().enqueue(new BaseCallback<List<User>>(this) {
                     @Override
-                    protected void onSuccess(Call<List<User>> call, Response<List<User>> response) {
+                    public void onSuccess(Call<List<User>> call, Response<List<User>> response) {
 
                     }
                 });
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.getUserList:
                 api.getUserList().enqueue(new BaseCallback<List<User>>(this) {
                     @Override
-                    protected void onSuccess(Call<List<User>> call, Response<List<User>> response) {
+                    public void onSuccess(Call<List<User>> call, Response<List<User>> response) {
                         for (User u : response.body()) {
                             Logger.e(u.getUsername() + ";;;;" + u.getPassword());
                         }
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestfile);
         api.uploadFileWithUsername(part, str).enqueue(new BaseCallback<User>(this) {
             @Override
-            protected void onSuccess(Call<User> call, Response<User> response) {
+            public void onSuccess(Call<User> call, Response<User> response) {
 
             }
         });
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestfile);
         api.uploadFile(part).enqueue(new BaseCallback<User>(this) {
             @Override
-            protected void onSuccess(Call<User> call, Response<User> response) {
+            public void onSuccess(Call<User> call, Response<User> response) {
 
             }
         });

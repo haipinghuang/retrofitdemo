@@ -9,6 +9,7 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -26,13 +27,17 @@ import retrofit2.http.Url;
  * Created by 黄海 on 4/8/2017.
  */
 public interface RetrofitApi {
-    String baseUrl = "http://192.168.1.109:8080/retrofitweb/";
+    String baseUrl = "http://10.200.6.38:8080/retrofitweb/";
 
     @GET("getNullUrl")
     Hcall<String> getNullUrl();//请求无效网址
 
     @GET("getUser")
     Hcall<User> getUser();
+
+    //请求服务器延迟delaySecond返回
+    @GET("getDelay/{delaySecond}")
+    Hcall<String> getDelay(@Path("delaySecond") int delaySecond);
 
     @GET("getValidatedUser")
     Hcall<BaseResponse<User>> getValidatedUser(@Query("userName") String userName, @Query("passwrod") String passwrod);

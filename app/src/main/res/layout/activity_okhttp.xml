@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.retrofit_test.ui.retrofit.MainActivity">
+    tools:context=".ui.okhttp.OkHttpActivity">
 
     <EditText
         android:id="@+id/et"
@@ -13,34 +13,39 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="y"
-        android:textSize="19sp" />
+        android:textSize="21sp" />
 
     <Button
-        android:id="@+id/getString"
+        android:id="@+id/get"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="click"
-        android:text="getString" />
-    <Button
-        android:id="@+id/getMixedNull"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getMixedNull" />
+        android:text="get"
+        android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/getUser"
+        android:id="@+id/post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="click"
-        android:text="getUser" />
+        android:text="post"
+        android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/getUserList"
+        android:id="@+id/formdata"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="click"
-        android:text="getUserList" />
+        android:text="formdata"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/json"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="json"
+        android:textAllCaps="false" />
 
 
 </LinearLayout>

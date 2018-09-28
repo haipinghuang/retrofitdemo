@@ -1,4 +1,4 @@
-package com.retrofit_test.ui;
+package com.retrofit_test.ui.retrofit;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

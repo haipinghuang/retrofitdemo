@@ -17,10 +17,12 @@ import retrofit2.Retrofit;
 
 
 /**
- * Created by 黄海 on 2017/4/7.
+ * 自定义callAdapter
+ * Created by huanghp on 2018/9/27.
+ * Email h1132760021@sina.com
  */
-
 public class HaiCallAdapterFactory extends CallAdapter.Factory {
+    private static final String TAG = "HaiCallAdapterFactory";
     final Handler callbackExecutor;
 
     public HaiCallAdapterFactory(Handler callbackExecutor) {
@@ -56,9 +58,9 @@ public class HaiCallAdapterFactory extends CallAdapter.Factory {
         @Override
         public void enqueue(Callback<T> callback) {
             if (callback == null) throw new NullPointerException("callback == null");
-            if (!(callback instanceof HcallBack))
-                throw new IllegalArgumentException("callback.getClass()!=HcallBack.class");
-            final HcallBack hcallBack = (HcallBack) callback;
+            if (!(callback instanceof HCallback))
+                throw new IllegalArgumentException("callback.getClass()!=HCallback.class");
+            final HCallback hcallBack = (HCallback) callback;
             onStart(hcallBack);
             delegate.enqueue(new Callback<T>() {
                 @Override
@@ -71,13 +73,13 @@ public class HaiCallAdapterFactory extends CallAdapter.Factory {
                                 try {
                                     hcallBack.onFailure(HaiCallbackCall.this, new IOException("Canceled"));
                                 } catch (Exception e) {
-                                    Logger.e(null, "方法onFailure抛出异常",e);
+                                    Logger.e(TAG, "方法onFailure抛出异常", e);
                                 }
                             } else {
                                 try {
                                     hcallBack.onResponse(HaiCallbackCall.this, response);
                                 } catch (Exception e) {
-                                    Logger.e(null, "方法onResponse抛出异常",e);
+                                    Logger.e(TAG, "方法onResponse抛出异常", e);
                                 }
                             }
                             onCompleted(hcallBack);
@@ -93,7 +95,7 @@ public class HaiCallAdapterFactory extends CallAdapter.Factory {
                             try {
                                 hcallBack.onFailure(HaiCallbackCall.this, t);
                             } catch (Exception e) {
-                                Logger.e(null, "方法onFailure抛出异常",e);
+                                Logger.e(TAG, "方法onFailure抛出异常", e);
                             }
                             onCompleted(hcallBack);
                         }
@@ -102,7 +104,7 @@ public class HaiCallAdapterFactory extends CallAdapter.Factory {
             });
         }
 
-        private void onStart(final HcallBack hcallBack) {
+        private void onStart(final HCallback hcallBack) {
             callbackExecutor.post(new Runnable() {
                 @Override
                 public void run() {
@@ -115,7 +117,7 @@ public class HaiCallAdapterFactory extends CallAdapter.Factory {
             });
         }
 
-        private void onCompleted(final HcallBack hcallBack) {
+        private void onCompleted(final HCallback hcallBack) {
             callbackExecutor.post(new Runnable() {
                 @Override
                 public void run() {
