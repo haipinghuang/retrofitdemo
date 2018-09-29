@@ -32,20 +32,18 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/formdata"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="formdata"
-        android:textAllCaps="false" />
-
-    <Button
         android:id="@+id/json"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="click"
         android:text="json"
         android:textAllCaps="false" />
-
+    <Button
+        android:id="@+id/file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="file"
+        android:textAllCaps="false" />
 
 </LinearLayout>

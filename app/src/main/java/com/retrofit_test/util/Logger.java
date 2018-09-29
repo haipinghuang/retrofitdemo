@@ -1,19 +1,15 @@
 package com.retrofit_test.util;
 
-import android.content.res.TypedArray;
 import android.util.Log;
-import android.util.TypedValue;
 
 import com.retrofit_test.BuildConfig;
-
-import java.lang.reflect.Array;
 
 /**
  * Created by 黄海 on 12/25/2016.
  */
 public class Logger {
     public static boolean DEBUG = BuildConfig.DEBUG;
-    private static final String TAG = "[**####log####**],";
+    private static final String TAG = "[###log###],";
     private static final String SEPARATOR = "***";
     private static int ZERO = -1;
 

@@ -22,7 +22,13 @@
             android:orientation="vertical"
             tools:context="com.retrofit_test.ui.retrofit.MainActivity">
 
-
+            <Button
+                android:id="@+id/goOkHttp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="goOkHttp"
+                android:textAllCaps="false" />
             <Button
                 android:id="@+id/getNullUrl"
                 android:layout_width="match_parent"

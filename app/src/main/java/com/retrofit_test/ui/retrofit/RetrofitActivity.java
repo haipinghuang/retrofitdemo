@@ -1,5 +1,6 @@
 package com.retrofit_test.ui.retrofit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.retrofit_test.bean.BaseResponse;
 import com.retrofit_test.bean.User;
 import com.retrofit_test.http.BaseCallback;
 import com.retrofit_test.http.DialogCallback;
+import com.retrofit_test.ui.okhttp.OkHttpActivity;
 import com.retrofit_test.util.ApiUtils;
 import com.retrofit_test.util.FileUtils;
 import com.retrofit_test.util.Logger;
@@ -44,8 +46,11 @@ public class RetrofitActivity extends AppCompatActivity {
 
     public void click(View v) {
         switch (v.getId()) {
+            case R.id.goOkHttp:
+                startActivity(new Intent(this, OkHttpActivity.class));
+                break;
             case R.id.getNullUrl:
-                api.getNullUrl().enqueue(new DialogCallback<String>(this) {
+                api.getNullUrl("value-header").enqueue(new DialogCallback<String>(this) {
                     @Override
                     public void onSuccess(Call<String> call, Response<String> response) {
 

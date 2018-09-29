@@ -9,11 +9,11 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -30,7 +30,7 @@ public interface RetrofitApi {
     String baseUrl = "http://10.200.6.38:8080/retrofitweb/";
 
     @GET("getNullUrl")
-    Hcall<String> getNullUrl();//请求无效网址
+    Hcall<String> getNullUrl(@Header("key-header") String header);//请求无效网址
 
     @GET("getUser")
     Hcall<User> getUser();

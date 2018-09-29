@@ -6,11 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.retrofit_test.R;
+import com.retrofit_test.bean.User;
+import com.retrofit_test.http.LoggingInterceptor;
+
+import java.io.IOException;
 
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * 直接测试okHttp
@@ -25,7 +31,8 @@ public class OkHttpActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_okhttp);
-        okHttpClient = new OkHttpClient.Builder().build();
+        setTitle("OkHttpActivity");
+        okHttpClient = new OkHttpClient.Builder().addInterceptor(new LoggingInterceptor()).build();
     }
 
     public void click(View view) {
@@ -36,15 +43,49 @@ public class OkHttpActivity extends AppCompatActivity {
                 post();
                 break;
             case R.id.json:
+                json();
+                break;
+            case R.id.file:
                 break;
         }
     }
 
+
+    private void json() {
+        final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String jsonString = com.alibaba.fastjson.JSON.toJSONString(new User("huanghai", "123456"));
+                RequestBody body = RequestBody.create(JSON, jsonString);
+                Request request = new Request.Builder().addHeader("key-header", "value-header")
+                        .url(baseUrl)
+                        .post(body)
+                        .build();
+                try {
+                    Response execute = okHttpClient.newCall(request).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     private void post() {
-        RequestBody formBody = new FormBody.Builder().add("username", "huanghai").build();
-        Request request = new Request.Builder().addHeader("key-header", "value-header")
-                .url(baseUrl)
-                .post(formBody)
-                .build();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                RequestBody formBody = new FormBody.Builder().add("username", "huanghai").build();
+                Request request = new Request.Builder().addHeader("key-header", "value-header")
+                        .url(baseUrl)
+                        .post(formBody)
+                        .build();
+                try {
+                    Response execute = okHttpClient.newCall(request).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
