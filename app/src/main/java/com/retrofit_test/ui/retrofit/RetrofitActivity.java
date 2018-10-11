@@ -39,8 +39,8 @@ public class RetrofitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrofit);
-        tv_content = (TextView) findViewById(R.id.tv_content);
         api = ApiUtils.getRetrofit().create(RetrofitApi.class);
+        tv_content = (TextView) findViewById(R.id.tv_content);
     }
 
 

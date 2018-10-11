@@ -11,6 +11,9 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 import com.retrofit_test.api.RetrofitApi;
 import com.retrofit_test.http.HaiCallAdapterFactory;
 import com.retrofit_test.http.LoggingInterceptor;
+import com.retrofit_test.http.https.MyHostNameVerifier;
+import com.retrofit_test.http.https.MySSLSocket;
+import com.retrofit_test.http.https.UnSafeTrustManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,10 +29,10 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class ApiUtils {
+    private static final String TAG = "ApiUtils";
     private static final int CONNECTION_TIMEOUT = 10;
     private static final int READ_TIMEOUT = 10;
-    private static String BASE_URL = "http://192.168.1.104:8080/webtest/";
-    //    private static String BASE_URL = "https://mportal.tianjihuifu.com/";
+    private static String BASE_URL = "https://10.200.6.38:8443/retrofitweb/";
     private static Retrofit retrofit;
     private static Map<String, Object> map_Api = new HashMap<>();
 
@@ -39,27 +42,20 @@ public class ApiUtils {
                 .addInterceptor(new LoggingInterceptor())
                 .cookieJar(cookieJar)
                 .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+                .sslSocketFactory(MySSLSocket.createSafeSocketFactory(context, "tomcat-test.cer"), new UnSafeTrustManager())
+                .hostnameVerifier(new MyHostNameVerifier())
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS);
         retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(new HaiCallAdapterFactory(new Handler(Looper.getMainLooper())))
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create()).client(builder.build())
                 .baseUrl(RetrofitApi.baseUrl)
+                .baseUrl(BASE_URL)
                 .build();
     }
 
     public static Retrofit getRetrofit() {
         if (retrofit == null) throw new IllegalStateException("please call init first");
         return retrofit;
-    }
-
-    public static <T> T createApi(Class<T> service) {
-        Object api = map_Api.get(service.getName());
-        synchronized (map_Api) {
-            if (api == null) {
-                api = getRetrofit().create(service);
-            }
-        }
-        return (T) api;
     }
 }
