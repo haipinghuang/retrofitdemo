@@ -13,11 +13,13 @@ import com.retrofit_test.http.HaiCallAdapterFactory;
 import com.retrofit_test.http.LoggingInterceptor;
 import com.retrofit_test.http.https.MyHostNameVerifier;
 import com.retrofit_test.http.https.MySSLSocket;
-import com.retrofit_test.http.https.UnSafeTrustManager;
+import com.retrofit_test.http.https.MyTrustManager;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -37,12 +39,14 @@ public class ApiUtils {
     private static Map<String, Object> map_Api = new HashMap<>();
 
     public static void init(Context context) {
+        X509TrustManager safeTrustManager = MyTrustManager.getSafeTrustManager(MyTrustManager.prepareTrustManager(context, "tomcat-test.cer"));
+        
         ClearableCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(new LoggingInterceptor())
                 .cookieJar(cookieJar)
                 .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
-                .sslSocketFactory(MySSLSocket.createSafeSocketFactory(context, "tomcat-test.cer"), new UnSafeTrustManager())
+                .sslSocketFactory(MySSLSocket.createSafeSocketFactory(context, "tomcat-test.cer"), safeTrustManager)
                 .hostnameVerifier(new MyHostNameVerifier())
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS);
         retrofit = new Retrofit.Builder()
