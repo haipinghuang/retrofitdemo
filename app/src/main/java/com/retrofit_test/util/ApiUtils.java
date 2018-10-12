@@ -15,8 +15,6 @@ import com.retrofit_test.http.https.MyHostNameVerifier;
 import com.retrofit_test.http.https.MySSLSocket;
 import com.retrofit_test.http.https.MyTrustManager;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.X509TrustManager;
@@ -32,23 +30,25 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiUtils {
     private static final String TAG = "ApiUtils";
-    private static final int CONNECTION_TIMEOUT = 10;
-    private static final int READ_TIMEOUT = 10;
+    private static final int CONNECTION_TIMEOUT = 5;
+    private static final int READ_TIMEOUT = CONNECTION_TIMEOUT;
     private static String BASE_URL = "https://10.200.6.38:8443/retrofitweb/";
     private static Retrofit retrofit;
-    private static Map<String, Object> map_Api = new HashMap<>();
+    private static String cerFileName = "tomcat-test127.cer";
 
     public static void init(Context context) {
-        X509TrustManager safeTrustManager = MyTrustManager.getSafeTrustManager(MyTrustManager.prepareTrustManager(context, "tomcat-test.cer"));
-        
+        X509TrustManager safeTrustManager = MyTrustManager.getSafeTrustManager(MyTrustManager.prepareTrustManager(context, cerFileName));
+
         ClearableCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(new LoggingInterceptor())
                 .cookieJar(cookieJar)
                 .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
-                .sslSocketFactory(MySSLSocket.createSafeSocketFactory(context, "tomcat-test.cer"), safeTrustManager)
+                .sslSocketFactory(MySSLSocket.createSafeSocketFactory(context, cerFileName), safeTrustManager)
+//                .sslSocketFactory(MySSLSocket.createUnSafeSocketFactory())
                 .hostnameVerifier(new MyHostNameVerifier())
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS);
+
         retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(new HaiCallAdapterFactory(new Handler(Looper.getMainLooper())))
                 .addConverterFactory(GsonConverterFactory.create())

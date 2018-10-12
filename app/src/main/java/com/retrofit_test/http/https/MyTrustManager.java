@@ -19,7 +19,8 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 /**
- * fileDesc
+ * TrustManager,管理是否验证证书
+ * HTTPS 单向认证://blog.csdn.net/ky_heart/article/details/79550863
  * Created by huanghp on 2018/10/11.
  * Email h1132760021@sina.com
  */
@@ -33,6 +34,7 @@ public class MyTrustManager {
      */
     public static TrustManager[] prepareTrustManager(Context context, String cerFileName) {
         InputStream is = null;
+        https:
         try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
             is = context.getResources().getAssets().open(cerFileName);
