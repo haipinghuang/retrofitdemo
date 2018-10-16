@@ -25,12 +25,17 @@ import retrofit2.http.Query;
  */
 
 public interface Api {
-
+    /**
+     * 请求无效网址
+     */
     @GET("getException")
     Call<String> getException();//请求无效网址
 
-    @GET("getCommonText")
-    Call<String> getCommonText();
+    /**
+     * 直接返回一段字符串
+     */
+    @GET("getAString")
+    Call<String> getAString();
 
     @GET("getUserReturnNull")
     Call<User> getUserReturnNull();

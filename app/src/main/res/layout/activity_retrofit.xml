@@ -114,6 +114,13 @@
                 android:onClick="click"
                 android:text="uploadFileWithUsername"
                 android:textAllCaps="false" />
+            <Button
+                android:id="@+id/uploadFileReturnString"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="uploadFileReturnString"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/downloadFile"

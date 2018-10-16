@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.okhttp.OkHttpActivity"/>
+        <activity android:name=".ui.okhttp.OkHttpActivity" />
     </application>
 
 </manifest>

@@ -74,9 +74,10 @@
         android:text="uploadFileWithUsername" />
 
     <Button
-        android:id="@+id/temp"
+        android:id="@+id/getAString"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="click"
-        android:text="temp" />
+        android:text="getAString"
+        android:textAllCaps="false" />
 </LinearLayout>

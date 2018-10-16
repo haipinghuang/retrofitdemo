@@ -65,6 +65,9 @@ public interface RetrofitApi {
     @Multipart
     Hcall<BaseResponse<String>> uploadFileWithName(@Part MultipartBody.Part part, @Part("name") String name);//已ok
 
+    @POST("uploadFileWithName")
+    @Multipart
+    Hcall<String> uploadFileReturnString(@Part MultipartBody.Part part);//
 
     @GET("downloadFile")
     @Streaming

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -118,7 +119,7 @@ public class RetrofitActivity extends AppCompatActivity {
                 });
                 break;
             case R.id.uploadFileWithUsername:
-                final File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "app-debug.apk");
+                File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "android-studio-ide-173.4907809-windows.exe");
                 if (file.exists())
                     Logger.i("file name=" + file.getName() + ",length=" + file.length());
                 MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MultipartBody.FORM, file));
@@ -131,7 +132,19 @@ public class RetrofitActivity extends AppCompatActivity {
                     }
                 });
                 break;
+            case R.id.uploadFileReturnString://android-studio-ide-173.4907809-windows.exe   QQ9.0.5.exe
+                file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "android-studio-ide-173.4907809-windows.exe");
+                if (file.exists())
+                    Logger.i("file name=" + file.getName() + ",length=" + file.length());
+                filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MultipartBody.FORM, file));
+                api.uploadFileReturnString(filePart).enqueue(new DialogCallback<String>(this) {
 
+                    @Override
+                    public void onSuccess(Call<String> call, Response<String> response) {
+                        Log.i(TAG, "uploadFileReturnString onSuccess: =" + response.body());
+                    }
+                });
+                break;
             case R.id.downloadFile:
                 api.downloadFile("app-debug.apk").enqueue(new DialogCallback<ResponseBody>(this) {
                     @Override
@@ -165,7 +178,6 @@ public class RetrofitActivity extends AppCompatActivity {
                 });
                 break;
         }
-
     }
 
 
