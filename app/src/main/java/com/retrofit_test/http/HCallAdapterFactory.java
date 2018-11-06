@@ -21,11 +21,11 @@ import retrofit2.Retrofit;
  * Created by huanghp on 2018/9/27.
  * Email h1132760021@sina.com
  */
-public class HaiCallAdapterFactory extends CallAdapter.Factory {
-    private static final String TAG = "HaiCallAdapterFactory";
+public class HCallAdapterFactory extends CallAdapter.Factory {
+    private static final String TAG = "HCallAdapterFactory";
     final Handler callbackExecutor;
 
-    public HaiCallAdapterFactory(Handler callbackExecutor) {
+    public HCallAdapterFactory(Handler callbackExecutor) {
         this.callbackExecutor = callbackExecutor;
     }
 

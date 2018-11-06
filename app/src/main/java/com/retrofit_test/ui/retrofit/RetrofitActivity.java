@@ -14,12 +14,17 @@ import com.retrofit_test.bean.BaseResponse;
 import com.retrofit_test.bean.User;
 import com.retrofit_test.http.BaseCallback;
 import com.retrofit_test.http.DialogCallback;
+import com.retrofit_test.http.SimpleOkHttpCallBack;
+import com.retrofit_test.http.progress.DownloadCallback;
+import com.retrofit_test.http.progress.UploadRequestBody;
 import com.retrofit_test.ui.okhttp.OkHttpActivity;
 import com.retrofit_test.util.ApiUtils;
 import com.retrofit_test.util.FileUtils;
 import com.retrofit_test.util.Logger;
 
 import java.io.File;
+import java.text.NumberFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +68,6 @@ public class RetrofitActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Call<User> call, Response<User> response) {
                         tv_content.setText(response.body().toString());
-//                        response.raw().close();// Cannot read raw response body of a converted body.
                     }
                 });
                 break;
@@ -109,7 +113,6 @@ public class RetrofitActivity extends AppCompatActivity {
             case R.id.postUsers:
                 Map<String, String> map = new HashMap<>();
                 map.put("haung", "hai");
-                map.put("li", "si");
                 map.put("zhang", "san");
                 api.postUsers(map).enqueue(new BaseCallback<BaseResponse<List<User>>>(this) {
                     @Override
@@ -133,39 +136,13 @@ public class RetrofitActivity extends AppCompatActivity {
                 });
                 break;
             case R.id.uploadFileReturnString://android-studio-ide-173.4907809-windows.exe   QQ9.0.5.exe
-                file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "android-studio-ide-173.4907809-windows.exe");
-                if (file.exists())
-                    Logger.i("file name=" + file.getName() + ",length=" + file.length());
-                filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MultipartBody.FORM, file));
-                api.uploadFileReturnString(filePart).enqueue(new DialogCallback<String>(this) {
-
-                    @Override
-                    public void onSuccess(Call<String> call, Response<String> response) {
-                        Log.i(TAG, "uploadFileReturnString onSuccess: =" + response.body());
-                    }
-                });
+                uploadFile(false);
+                break;
+            case R.id.uploadProgressFileReturnString://android-studio-ide-173.4907809-windows.exe   QQ9.0.5.exe
+                uploadFile(true);
                 break;
             case R.id.downloadFile:
                 api.downloadFile("app-debug.apk").enqueue(new DialogCallback<ResponseBody>(this) {
-                    @Override
-                    public void onSuccess(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    }
-
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
-                        if (response.code() == 200 || response.code() == 201) {
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    FileUtils.response2File(response.body());
-                                }
-                            }).start();
-                        }
-                    }
-                });
-                break;
-            case R.id.download:
-                api.download("http://192.168.1.109:8080/rongzhi.apk").enqueue(new DialogCallback<ResponseBody>(this) {
                     @Override
                     public void onSuccess(Call<ResponseBody> call, final Response<ResponseBody> response) {
                         new Thread(new Runnable() {
@@ -176,8 +153,63 @@ public class RetrofitActivity extends AppCompatActivity {
                         }).start();
                     }
                 });
+//                downloadFile("http://10.200.6.38:8080/retrofitweb/12345q.exe");
+                break;
+            case R.id.download:
+//                api.download("http://10.200.6.38:8080/retrofitweb/app-debug.apk").enqueue(new DialogCallback<ResponseBody>(this) {
+//                    @Override
+//                    public void onSuccess(Call<ResponseBody> call, final Response<ResponseBody> response) {
+//                        new Thread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                FileUtils.response2File(response.body());
+//                            }
+//                        }).start();
+//                    }
+//                });
+                downloadFile("http://10.200.6.38:8080/retrofitweb/12345q.exe");
                 break;
         }
+    }
+
+    void downloadFile(String uri) {
+
+        api.download(uri).enqueue(new DownloadCallback(this, Environment.getExternalStorageDirectory().getAbsolutePath(), new Date().getTime() + ".apk") {
+            @Override
+            public void onProgress(long totalRead, long contentLength) {
+                String percent = NumberFormat.getPercentInstance().format(1.0 * totalRead / contentLength).toString();
+                Log.i(TAG, "下载进度 with: totalRead = [" + totalRead + "], contentLength = [" + contentLength + "], progress = [" + percent + "]");
+            }
+        });
+    }
+
+    /**
+     * @param progress 是否展示上传进度
+     */
+    private void uploadFile(boolean progress) {
+        MultipartBody.Part filePart;
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "QQ9.0.5.exe");
+        if (file.exists())
+            Logger.i("file name=" + file.getName() + ",length=" + file.length());
+        RequestBody body = RequestBody.create(MultipartBody.FORM, file);
+        UploadRequestBody progressBody = null;
+        if (progress) {
+            progressBody = new UploadRequestBody(body, new SimpleOkHttpCallBack() {
+                @Override
+                public void onProgress(long sended, long total) {
+                    String percent = NumberFormat.getPercentInstance().format(1.0 * sended / total).toString();
+                    Log.i(TAG, "onProgress() called with: sended = [" + sended + "], total = [" + total + "], Progress = [" + percent + "]");
+                }
+            });
+        }
+        filePart = MultipartBody.Part.createFormData("file", file.getName(), progress ? progressBody : body);
+        api.uploadFileReturnString(filePart).enqueue(new DialogCallback<String>(this) {
+
+            @Override
+            public void onSuccess(Call<String> call, Response<String> response) {
+                Log.i(TAG, "uploadFileReturnString onSuccess: =" + response.body());
+            }
+        });
     }
 
 

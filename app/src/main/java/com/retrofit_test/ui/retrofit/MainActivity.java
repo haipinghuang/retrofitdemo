@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         if (file.exists())
             Logger.i("file name=" + file.getName() + ",length=" + file.length());
         RequestBody requestfile = RequestBody.create(MediaType.parse("application/otcet-stream"), file);
-        RequestBody description = RequestBody.create(MediaType.parse("multipart/form-data"), "This is a description");
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestfile);
         api.uploadFile(part).enqueue(new DialogCallback<User>(this) {
             @Override

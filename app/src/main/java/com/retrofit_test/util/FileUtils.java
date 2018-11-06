@@ -19,8 +19,11 @@ import okhttp3.ResponseBody;
 public class FileUtils {
     public static void response2File(final ResponseBody responseBody) {
         InputStream inputStream = responseBody.byteStream();
+        long fileLength = responseBody.contentLength();
+        if (fileLength <= 0) return;
+
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), new Date().getTime() + ".apk");
-        byte[] buffer = new byte[2048];
+        byte[] buffer = new byte[8192];
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(file);

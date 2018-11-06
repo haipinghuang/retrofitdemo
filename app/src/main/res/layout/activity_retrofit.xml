@@ -29,6 +29,7 @@
                 android:onClick="click"
                 android:text="goOkHttp"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/getNullUrl"
                 android:layout_width="match_parent"
@@ -52,6 +53,7 @@
                 android:onClick="click"
                 android:text="getDelay3s"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/getDelay30s"
                 android:layout_width="match_parent"
@@ -59,6 +61,7 @@
                 android:onClick="click"
                 android:text="getDelay30s"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/getValidatedUser"
                 android:layout_width="match_parent"
@@ -114,12 +117,21 @@
                 android:onClick="click"
                 android:text="uploadFileWithUsername"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/uploadFileReturnString"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="click"
                 android:text="uploadFileReturnString"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/uploadProgressFileReturnString"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="click"
+                android:text="uploadProgressFileReturnString"
                 android:textAllCaps="false" />
 
             <Button
@@ -137,6 +149,8 @@
                 android:onClick="click"
                 android:text="download"
                 android:textAllCaps="false" />
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

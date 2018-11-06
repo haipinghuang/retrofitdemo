@@ -15,15 +15,22 @@ import retrofit2.Response;
  * Email h1132760021@sina.com
  */
 public interface HCallback<T> extends Callback<T> {
+    /**
+     * called on mainThread
+     */
     void onStart();
 
     /**
      * it is used when response.isSuccessful() and response.code()==200
+     * called on mainThread
      *
      * @param call
      * @param response
      */
     void onSuccess(Call<T> call, Response<T> response);
 
+    /**
+     * called on mainThread
+     */
     void onCompleted();
 }

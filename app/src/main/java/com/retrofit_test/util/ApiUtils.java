@@ -9,7 +9,7 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.retrofit_test.api.RetrofitApi;
-import com.retrofit_test.http.HaiCallAdapterFactory;
+import com.retrofit_test.http.HCallAdapterFactory;
 import com.retrofit_test.http.LoggingInterceptor;
 import com.retrofit_test.http.https.MyTrustManager;
 
@@ -48,7 +48,7 @@ public class ApiUtils {
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS);
 
         retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(new HaiCallAdapterFactory(new Handler(Looper.getMainLooper())))
+                .addCallAdapterFactory(new HCallAdapterFactory(new Handler(Looper.getMainLooper())))
                 .addConverterFactory(ScalarsConverterFactory.create())//这个顺序不能换
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(builder.build())

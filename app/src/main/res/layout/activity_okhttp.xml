@@ -38,12 +38,33 @@
         android:onClick="click"
         android:text="json"
         android:textAllCaps="false" />
+
     <Button
-        android:id="@+id/file"
+        android:id="@+id/post18"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="click"
-        android:text="file"
+        android:text="post18"
         android:textAllCaps="false" />
-
+    <Button
+        android:id="@+id/post70"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="post70"
+        android:textAllCaps="false" />
+    <Button
+        android:id="@+id/download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="download"
+        android:textAllCaps="false" />
+    <Button
+        android:id="@+id/downloadFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="downloadFile"
+        android:textAllCaps="false" />
 </LinearLayout>

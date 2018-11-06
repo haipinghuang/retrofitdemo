@@ -2,6 +2,8 @@ package com.retrofit_test;
 
 import org.junit.Test;
 
+import java.nio.charset.Charset;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -17,28 +19,13 @@ public class ExampleUnitTest {
 
     @Test
     public void test() {
-        Par1 childa = new Childa() {
-        };
-        Childb childb = new Childb() {
-        };
-        System.out.println(childa.getClass());
-        System.out.println(childb.getClass());
-        System.out.println(childa instanceof Par1);
-        System.out.println(childb instanceof Par1);
+        String s = "sdf是的";
+        System.out.println(retus());
     }
 
-    interface Par {
-
+    int retus() {
+        int a = 3;
+        int b, c=8;
+        return c = b = a;
     }
-
-    interface Par1 extends Par {
-
-    }
-
-    abstract class Childa implements Par1 {
-    }
-
-    abstract class Childb implements Par {
-    }
-
 }
