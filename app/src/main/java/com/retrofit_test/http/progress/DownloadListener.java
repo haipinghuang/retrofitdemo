@@ -3,7 +3,7 @@ package com.retrofit_test.http.progress;
 import java.io.File;
 
 /**
- *
+ * DownloadListener
  */
 public interface DownloadListener {
     void onStart();
