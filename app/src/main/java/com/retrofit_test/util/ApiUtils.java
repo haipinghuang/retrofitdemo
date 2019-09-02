@@ -40,6 +40,7 @@ public class ApiUtils {
         ClearableCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(new LoggingInterceptor())
+//                .addNetworkInterceptor()
                 .cookieJar(cookieJar)
                 .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
 //                .sslSocketFactory(MySSLSocket.createSafeSocketFactory(context, cerFileName), safeTrustManager)
