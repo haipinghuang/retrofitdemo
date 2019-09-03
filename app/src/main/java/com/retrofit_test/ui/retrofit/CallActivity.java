@@ -23,14 +23,14 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class CallActivity extends AppCompatActivity {
     private static final String TAG = "hhp";
     Api api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_call);
         api = ApiUtils.getRetrofit().create(Api.class);
     }
 

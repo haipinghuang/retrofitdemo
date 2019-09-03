@@ -1,83 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.retrofit_test.ui.retrofit.MainActivity">
-
+    tools:context=".ui.MainActivity">
     <Button
-        android:id="@+id/getException"
+        android:id="@+id/okhttp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getException" />
-
+        android:onClick="click" />
     <Button
-        android:id="@+id/getUser"
+        android:id="@+id/retrofit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getUser" />
+        android:onClick="click" />
 
     <Button
-        android:id="@+id/getUserReturnNull"
+        android:id="@+id/retrofitHcall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="get_User_Return_Null" />
+        android:onClick="click" />
 
     <Button
-        android:id="@+id/getUserList"
+        android:id="@+id/retrofitRx"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getUserList" />
+        android:onClick="click" />
 
-    <Button
-        android:id="@+id/getUserListNull"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="get_User_List_Null" />
-
-    =======
-    android:text="getUser" />
-
-    <Button
-        android:id="@+id/getUserNull"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getUser_Null" />
-
-    <Button
-        android:id="@+id/postUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="postUser" />
-
-    <Button
-        android:id="@+id/uploadFile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="uploadFile" />
-
-    <Button
-        android:id="@+id/uploadFileWithUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="uploadFileWithUsername" />
-
-    <Button
-        android:id="@+id/getAString"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:text="getAString"
-        android:textAllCaps="false" />
 </LinearLayout>

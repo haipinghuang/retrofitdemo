@@ -19,6 +19,7 @@ import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
@@ -50,6 +51,7 @@ public class ApiUtils {
 
         retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(new HCallAdapterFactory(new Handler(Looper.getMainLooper())))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())//这个顺序不能换
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(builder.build())

@@ -35,7 +35,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class RetrofitActivity extends AppCompatActivity {
+public class HcallActivity extends AppCompatActivity {
     private static final String TAG = "hhp";
     RetrofitApi api;
     TextView tv_content;
@@ -44,7 +44,7 @@ public class RetrofitActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retrofit);
+        setContentView(R.layout.activity_hcall);
         api = ApiUtils.getRetrofit().create(RetrofitApi.class);
         tv_content = (TextView) findViewById(R.id.tv_content);
     }
