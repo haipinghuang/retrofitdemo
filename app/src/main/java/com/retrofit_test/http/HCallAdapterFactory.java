@@ -30,17 +30,17 @@ public class HCallAdapterFactory extends CallAdapter.Factory {
     }
 
     @Override
-    public CallAdapter<Call<?>> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
+    public CallAdapter<?, ?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
         if (getRawType(returnType) != Hcall.class) return null;
         final Type responseType = Utils.getCallResponseType(returnType);
-        return new CallAdapter<Call<?>>() {
+        return new CallAdapter<Object, Call<?>>() {
             @Override
             public Type responseType() {
                 return responseType;
             }
 
             @Override
-            public <R> Call<R> adapt(Call<R> call) {
+            public Call<Object> adapt(Call<Object> call) {
                 return new HaiCallbackCall<>(callbackExecutor, call);
             }
         };

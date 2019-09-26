@@ -3,8 +3,8 @@ package com.retrofit_test.http;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.retrofit_test.exception.ClientException;
-import com.retrofit_test.exception.ServerException;
+import com.retrofit_test.http.exception.ClientException;
+import com.retrofit_test.http.exception.ServerException;
 import com.retrofit_test.util.Logger;
 
 import java.net.ConnectException;

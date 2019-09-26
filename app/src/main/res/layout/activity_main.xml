@@ -5,27 +5,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
+
     <Button
         android:id="@+id/okhttp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click" />
+        android:onClick="click"
+        android:text="okhttp" />
+
     <Button
         android:id="@+id/retrofit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click" />
+        android:onClick="click"
+        android:text="retrofit" />
 
     <Button
         android:id="@+id/retrofitHcall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click" />
+        android:onClick="click"
+        android:text="Hcall" />
 
     <Button
         android:id="@+id/retrofitRx"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="click" />
+        android:onClick="click"
+        android:text="retrofitRx" />
 
 </LinearLayout>

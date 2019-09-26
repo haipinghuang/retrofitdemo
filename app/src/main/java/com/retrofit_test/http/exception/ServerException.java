@@ -1,4 +1,4 @@
-package com.retrofit_test.exception;
+package com.retrofit_test.http.exception;
 
 /**
  * Created by 黄海 on 2/11/2017.

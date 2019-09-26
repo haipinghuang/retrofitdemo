@@ -12,6 +12,9 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.internal.operators.observable.ObservableSampleWithObservable;
+import io.reactivex.observers.SafeObserver;
 import rx.Subscriber;
 
 public class RxActivity extends AppCompatActivity {
@@ -30,28 +33,14 @@ public class RxActivity extends AppCompatActivity {
             case R.id.getString:
                 api.getAString()
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<String>() {
+                        .subscribe(new Consumer<String>() {
                             @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
-
-                            @Override
-                            public void onNext(String s) {
-
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-
-                            }
-
-                            @Override
-                            public void onComplete() {
+                            public void accept(String s) throws Exception {
 
                             }
                         });
                 break;
+
         }
     }
 

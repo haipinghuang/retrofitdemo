@@ -26,7 +26,7 @@ import retrofit2.http.Url;
  * 此中的接口都已测试 通过
  * Created by 黄海 on 4/8/2017.
  */
-public interface RetrofitApi {
+public interface HApi {
     String baseUrl = "http://10.200.6.38:8080/retrofitweb/";
 
     @GET("getNullUrl")

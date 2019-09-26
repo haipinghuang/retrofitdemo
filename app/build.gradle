@@ -28,6 +28,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation 'com.alibaba:fastjson:1.1.56.android'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
 //    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'

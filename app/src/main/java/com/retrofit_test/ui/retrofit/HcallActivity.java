@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.retrofit_test.R;
-import com.retrofit_test.api.RetrofitApi;
+import com.retrofit_test.api.HApi;
 import com.retrofit_test.bean.BaseResponse;
 import com.retrofit_test.bean.User;
 import com.retrofit_test.http.BaseCallback;
@@ -37,7 +37,7 @@ import retrofit2.Response;
 
 public class HcallActivity extends AppCompatActivity {
     private static final String TAG = "hhp";
-    RetrofitApi api;
+    HApi api;
     TextView tv_content;
     boolean flag;
 
@@ -45,7 +45,7 @@ public class HcallActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hcall);
-        api = ApiUtils.getRetrofit().create(RetrofitApi.class);
+        api = ApiUtils.getRetrofit().create(HApi.class);
         tv_content = (TextView) findViewById(R.id.tv_content);
     }
 
