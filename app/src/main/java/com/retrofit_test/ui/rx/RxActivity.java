@@ -8,14 +8,8 @@ import com.retrofit_test.R;
 import com.retrofit_test.api.RxApi;
 import com.retrofit_test.util.ApiUtils;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.internal.operators.observable.ObservableSampleWithObservable;
-import io.reactivex.observers.SafeObserver;
-import rx.Subscriber;
 
 public class RxActivity extends AppCompatActivity {
     private static final String TAG = "hhp";
