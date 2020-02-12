@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.retrofit:
                 startActivity(new Intent(this, CallActivity.class));
                 break;
-            case R.id.retrofitHcall:
+            case R.id.Hcall:
                 startActivity(new Intent(this, HcallActivity.class));
                 break;
             case R.id.retrofitRx:
