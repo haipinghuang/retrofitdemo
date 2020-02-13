@@ -27,7 +27,7 @@ import retrofit2.http.Url;
  * Created by 黄海 on 4/8/2017.
  */
 public interface HApi {
-    String baseUrl = "http://10.200.6.38:8080/retrofitweb/";
+    String baseUrl = "http://192.168.43.20:8080/retrofitweb/";
 
     @GET("getNullUrl")
     Hcall<String> getNullUrl(@Header("key-header") String header);//请求无效网址

@@ -34,7 +34,8 @@ import okhttp3.Response;
  */
 public class OkHttpActivity extends AppCompatActivity {
     private static final String TAG = "OkHttpActivity";
-    String baseUrl = "http://10.200.6.38:8080/retrofitweb/";//http://10.200.6.38  10.0.2.2
+//    String baseUrl = "http://10.200.6.38:8080/retrofitweb/";//http://10.200.6.38  10.0.2.2
+    String baseUrl = "https://www.wanandroid.com/user/login";//http://10.200.6.38  10.0.2.2
     OkHttpClient okHttpClient;
 
     @Override
@@ -104,8 +105,6 @@ public class OkHttpActivity extends AppCompatActivity {
                 .build();
 
         okHttpClient.newCall(request).enqueue(cb);
-
-
     }
 
     private void post() {
@@ -125,6 +124,7 @@ public class OkHttpActivity extends AppCompatActivity {
 
         @Override
         public void onResponse(Call call, Response response) throws IOException {
+
             Log.i(TAG, "onResponse() called with: call = [" + call + "], response = [" + response.body().string() + "]");
         }
     };

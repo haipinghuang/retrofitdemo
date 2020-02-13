@@ -142,7 +142,7 @@ public class HcallActivity extends AppCompatActivity {
                 uploadFile(true);
                 break;
             case R.id.downloadFile:
-                api.downloadFile("app-debug.apk").enqueue(new DialogCallback<ResponseBody>(this) {
+                api.downloadFile("genymotion.exe").enqueue(new DialogCallback<ResponseBody>(this) {
                     @Override
                     public void onSuccess(Call<ResponseBody> call, final Response<ResponseBody> response) {
                         new Thread(new Runnable() {

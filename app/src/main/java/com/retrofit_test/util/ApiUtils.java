@@ -51,7 +51,7 @@ public class ApiUtils {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(builder.build())
                 .baseUrl(HApi.baseUrl)
-                .baseUrl(BASE_URL)
+//                .baseUrl(BASE_URL)
                 .build();
     }
 
